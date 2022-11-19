@@ -1,0 +1,42 @@
+<div>
+    {% for magazine in magazines.items %}
+    <div>
+        <a href="{{ url_for('blueprint.magazine', id=magazine.id)}}">
+            <b>{{ magazine.id }}</b> | {{ magazine.city }} | {{ magazine.street }} | {{ magazine.postal_code }} |
+        </a> |
+{#        <a href="{{ url_for('blueprint.magazine_edit', id=magazine.id)}}">#}
+{#            <b>Edit {{ magazine.id }} </b>#}
+{#        </a> |#}
+{#        <a href="{{ url_for('blueprint.magazine_delete', id=magazine.id)}}">#}
+{#            <b>Delete {{ magazine.id }} </b>#}
+{#        </a>#}
+
+    </div>
+    {% endfor %}
+    <hr>
+
+
+    <div>
+        <a href="{{ url_for('blueprint.magazines', page=magazines.prev_num) }}"> &laquo;</a>
+
+        </a>
+        {% for page_num in magazines.iter_pages(left_edge=0, right_edge=0, left_current=4, right_current=4) %}
+
+        <a href="{{ url_for('blueprint.magazines', page=page_num) }}">
+            {{ page_num }}
+        </a>
+
+
+        {% endfor %}
+        <a href="{{ url_for('blueprint.magazines', page=magazines.next_num) }}">
+
+            &raquo;
+        </a>
+        <p>
+            Showing page {{ magazines.page }} of {{ magazines.pages }}
+        </p>
+    </div>
+
+    <hr>
+    <a href="/">Back to /</a>
+</div>

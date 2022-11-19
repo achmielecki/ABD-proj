@@ -1,0 +1,23 @@
+<div>
+    <a href="/">Back to /</a>
+    <hr>
+    <div>
+        <a href="{{ url_for('blueprint.magazine', id=magazine.id)}}">
+            <b>{{ magazine.id }}</b> | {{ magazine.city }} | {{ magazine.street }} | {{ magazine.postal_code }}
+        </a> |
+{#        <a href="{{ url_for('blueprint.magazine_edit', id=magazine.id)}}">#}
+{#            <b>Edit {{ magazine.id }} </b>#}
+{#        </a> |#}
+{#        <a href="{{ url_for('blueprint.magazine_delete', id=magazine.id)}}">#}
+{#            <b>Delete {{ magazine.id }} </b>#}
+{#        </a>#}
+        {% for worker in magazine.workers %}
+            <br>
+            --><b>{{ worker.name }} {{ worker.surname }}</b> {{ worker.email }}
+        {% endfor %}
+    </div>
+    <hr>
+
+    <hr>
+    <a href="/">Back to /</a>
+</div>
