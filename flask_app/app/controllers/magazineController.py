@@ -30,6 +30,7 @@ def magazine(id):
 
 def query1():
     with Session(engine) as session:
+        resetSalaries()
         session.expire_all()
         start_time = time.time()
         director = \
@@ -41,7 +42,6 @@ def query1():
         orm_time = time.time() - start_time
 
         resetSalaries()
-
         session.expire_all()
         start_time = time.time()
         session.execute(
@@ -51,7 +51,6 @@ def query1():
         session.commit()
         sql_time = time.time() - start_time
 
-        resetSalaries()
         return render_template("query1.html", count=count, orm_time=orm_time, sql_time=sql_time)
 
 
@@ -72,14 +71,14 @@ def query1orm():
 
 def resetSalaries():
     with Session(engine) as session:
-        session.execute('UPDATE \"Worker\" SET salary = 2000 WHERE salary = 4000 AND magazine_id = 1')
+        session.execute('UPDATE \"Worker\" SET salary = 2000 WHERE salary = 4000 AND magazine_id = 10')
         session.commit()
 
 
 def query1sql():
     with Session(engine) as session:
         start_time = time.time()
-        session.execute('UPDATE \"Worker\" SET salary = 4000 WHERE salary < 4000 AND magazine_id = 1')
+        session.execute('UPDATE \"Worker\" SET salary = 4000 WHERE salary < 4000 AND magazine_id = 10')
         session.commit()
         sql_time = time.time() - start_time
 
