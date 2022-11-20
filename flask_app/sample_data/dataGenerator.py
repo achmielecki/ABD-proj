@@ -74,7 +74,7 @@ def gen_workers(start: int, count: int):
     path = os.path.dirname(__file__)
     f = open(os.path.join(path, "workers.csv"), "a", encoding='utf-16')
     f.write("id,name,surname,email,salary,shift,magazine_id\n")
-    for i in range(start, count + start):
+    for i in range(start-1, count + start):
         f.write(generate_worker(i, start) + '\n')
     f.close()
 
@@ -98,9 +98,9 @@ def gen_directors(start: int, count: int):
 
 
 if __name__ == "__main__":
-    magazines_count = 50
-    workers_count = 50000
+    magazines_count = 100
+    workers_count = 300000
 
     gen_magazines(1, magazines_count)
     gen_directors(1, magazines_count)
-    gen_workers(magazines_count + 1, workers_count)
+    gen_workers(magazines_count, workers_count)

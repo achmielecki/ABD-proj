@@ -8,7 +8,7 @@ class Magazine(db.Model):
     city = db.Column(db.String(50))
     street = db.Column(db.String(50))
     postal_code = db.Column(db.String(10), unique=True)
-    country = db.Column(db.String(10))
+    country = db.Column(db.String(100))
     workers = db.relationship("Worker", backref="magazine", lazy="dynamic")
 
     def __init__(self, city, street, postal_code, country, id=None):
